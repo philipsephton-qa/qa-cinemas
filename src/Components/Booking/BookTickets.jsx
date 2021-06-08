@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Form, Button, Col, Modal } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom';
+import Seating from '../Seating/Seating'
 
 const BookTickets = (props) => {
 
-    const {screeningDate, screeningTime, movieTitle} = props.location.state;
+    // const {screeningDate, screeningTime, movieTitle} = props.location.state;
+    const screeningDate = "abc";
+    const screeningTime = "16:00";
+    const movieTitle = "abc";
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -124,6 +128,7 @@ const BookTickets = (props) => {
             </p>
             <p>Total tickets: {totalTickets}</p>
             <p>Total tickets cost: £{totalTicketsPrice}</p>
+            <Seating />
         </Form>
     );
 };
