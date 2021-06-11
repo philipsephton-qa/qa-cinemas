@@ -1,4 +1,5 @@
 import { Col, Row, Button, Tab } from "react-bootstrap";
+
 import { useState } from "react";
 import Tabs from 'react-bootstrap/Tabs';
 import { Link, NavLink } from 'react-router-dom';
@@ -11,9 +12,14 @@ const MovieTimes = (props) => {
   const [key, setKey] = useState("monday");
   const [screeningDate, setScreeningDate] = useState("monday");
 
+
   const setDay = (k) => {
     setScreeningDate(k);
     setKey(k);
+  };
+
+  const zeroPad = (num, places) => String(num).padStart(places, "0");
+
   }
   
   return (
@@ -23,70 +29,34 @@ const MovieTimes = (props) => {
       onSelect={(k) => setDay(k)}
       className="mb-3"
     >
-      <Tab eventKey="monday" title="Monday">
-        <Link
-          to={{
-            pathname: "/BookTickets",
-            state: { screeningDate, screeningTime, movieTitle }
-          }}>
-          <Button variant="outline-danger">{screeningTime}</Button>
-        </Link>
-      </Tab>
-      <Tab eventKey="tuesday" title="Tuesday">
-      <Link
-          to={{
-            pathname: "/BookTickets",
-            state: { screeningDate, screeningTime, movieTitle }
-          }}>
-          <Button variant="outline-danger">{screeningTime}</Button>
-        </Link>
-      </Tab>
-      <Tab eventKey="wednesday" title="Wednesday">
-      <Link
-          to={{
-            pathname: "/BookTickets",
-            state: { screeningDate, screeningTime, movieTitle }
-          }}>
-          <Button variant="outline-danger">{screeningTime}</Button>
-        </Link>
-      </Tab>
-      <Tab eventKey="thursday" title="Thursday">
-      <Link
-          to={{
-            pathname: "/BookTickets",
-            state: { screeningDate, screeningTime, movieTitle }
-          }}>
-          <Button variant="outline-danger">{screeningTime}</Button>
-        </Link>
-      </Tab>
-      <Tab eventKey="friday" title="Friday">
-      <Link
-          to={{
-            pathname: "/BookTickets",
-            state: { screeningDate, screeningTime, movieTitle }
-          }}>
-          <Button variant="outline-danger">{screeningTime}</Button>
-        </Link>
-      </Tab>
-      <Tab eventKey="saturday" title="Saturday">
-      <Link
-          to={{
-            pathname: "/BookTickets",
-            state: { screeningDate, screeningTime, movieTitle }
-          }}>
-          <Button variant="outline-danger">{screeningTime}</Button>
-        </Link>
-      </Tab>
-      <Tab eventKey="sunday" title="Sunday">
-      <Link
-          to={{
-            pathname: "/BookTickets",
-            state: { screeningDate, screeningTime, movieTitle }
-          }}>
-          <Button variant="outline-danger">{screeningTime}</Button>
-        </Link>
-      </Tab>
-    </Tabs >
+
+      {Object.entries(viewingTimes).map(([key, value]) => (
+        <Tab eventKey={key} title={key}>
+          <h3>Available Times</h3>
+          <br />
+          <Row>
+            {value.map((screeningTime) => (
+              <Col className="viewingTimes">
+                <Link
+                  to={{
+                    pathname: "/BookTickets",
+                    state: { movieTitle, screeningTime, screeningDate },
+                  }}
+                >
+                  <Button variant="outline-danger">
+                    {`${screeningTime.hours}:${zeroPad(
+                      screeningTime.minutes,
+                      2
+                    )}`}
+                  </Button>
+                </Link>
+              </Col>
+            ))}
+          </Row>
+        </Tab>
+      ))}
+    </Tabs>
+
   );
 };
 export default MovieTimes;
