@@ -115,12 +115,12 @@ const BookTickets = (props) => {
             </Form.Group>
 
             <Link
-          to={{
-              pathname:"/Payments",
-          state: {totalTicketsPrice}
-          }}>
-          <Button variant="outline-danger">Go To Checkout</Button>
-        </Link>
+                to={{
+                    pathname: "/Payments",
+                    state: { totalTicketsPrice }
+                }}>
+                <Button variant="outline-danger">Go To Checkout</Button>
+            </Link>
 
             <p>Movie Title: {movieTitle}</p>
             <p>
