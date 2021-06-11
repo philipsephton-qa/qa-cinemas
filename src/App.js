@@ -13,11 +13,6 @@ import Cinemas from "./Components/Cinema_Details/Cinemas"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import Classifications from "./Components/Classifications/Classifications";
-import BookTicketsBtn from "./Components/Booking/BookTicketsBtn";
-import BookTickets from "./Components/Booking/BookTickets";
-import MovieTimes from "./Components/Booking/MovieTimes";
-import PaymentForm from "./Components/Booking/PaymentForm";
 
 import MovieInfo from "./Components/MovieInfo/MovieInfo";
 import DiscussionBoard from "./Components/DiscussionBoard/DiscussionBoard";
@@ -45,58 +40,60 @@ const App = () => {
             searchedMovie={searchedMovie}
             user={user}
             setUser={setUser}
-          />
-    <Router>
-      <NavigationBar />
-      <br />
+          /></Route>
+          </Router>
+        <Router>
+          <NavigationBar />
+          
+          <br />
 
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
 
-          <Route exact path="/ContactUs" component={ContactUs} />
-          <Route exact path="/cinemas" component={Cinemas} />
-          <Route exact path="/movies">
-            <Movies
-              currentMovies={currentMovies}
-              upcomingMovies={upcomingMovies}
-            />
-          </Route>
-          <Route exact path="/movieinfo/:id" component={MovieInfo}></Route>
-          <Route
-            exact
-            path="/MovieTimes"
-            render={(props) => (
-              <MovieTimes {...props} cinemaId={user.cinemaID} />
-            )}
-          ></Route>
-          <Route exact path="/BookTickets" render={(props) => (
-            <BookTickets {...props} />
-          )}></Route>
+            <Route exact path="/ContactUs" component={ContactUs} />
+            <Route exact path="/cinemas" component={Cinemas} />
+            <Route exact path="/movies">
+              <Movies
+                currentMovies={currentMovies}
+                upcomingMovies={upcomingMovies}
+              />
+            </Route>
+            <Route exact path="/movieinfo/:id" component={MovieInfo}></Route>
+            <Route
+              exact
+              path="/MovieTimes"
+              render={(props) => (
+                <MovieTimes {...props} cinemaId={user.cinemaID} />
+              )}
+            ></Route>
+            <Route exact path="/BookTickets" render={(props) => (
+              <BookTickets {...props} />
+            )}></Route>
 
-          <Route exact path="/Payments"
-          render={(props) => (
-            <PaymentForm {...props} />
-          )}></Route>
+            <Route exact path="/Payments"
+              render={(props) => (
+                <PaymentForm {...props} />
+              )}></Route>
 
-          <Route exact path="/about">
-            <AboutPage />
-          </Route>
+            <Route exact path="/about">
+              <AboutPage />
+            </Route>
 
-          <Route exact path="/Classifications" component={Classifications}>
-                <Classifications />
-              </Route>
+            <Route exact path="/Classifications" component={Classifications}>
+              <Classifications />
+            </Route>
 
-          <Route exact path="/DiscussionBoard">
-            <DiscussionBoard />
-          </Route>
-        </Switch>
-        <br />
-        <Footer />
-      </Router>
+            <Route exact path="/DiscussionBoard">
+              <DiscussionBoard />
+            </Route>
+          </Switch>
+          <br />
+          <Footer />
+        </Router>
     </>
-  );
+      );
 };
 
-export default App;
+      export default App;

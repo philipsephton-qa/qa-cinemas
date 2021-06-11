@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const MovieTimes = (props) => {
   const movieTitle = props.location.state.movieTitle;
-  let screeningTime = "16:00";
+  // let screeningTime = "16:00";
   console.log(props)
 
   const [key, setKey] = useState("monday");
@@ -20,7 +20,7 @@ const MovieTimes = (props) => {
 
   const zeroPad = (num, places) => String(num).padStart(places, "0");
 
-  }
+  
   
   return (
     <Tabs
